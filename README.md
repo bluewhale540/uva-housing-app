@@ -1,5 +1,7 @@
 ## About
-CS 3240 project repo.
+CS 3240 project repo
+
+Access the website [here](https://b11-project.herokuapp.com)
 
 ## Authors
 * [Will Baginski](https://github.com/willbaginski)

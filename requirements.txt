@@ -3,3 +3,4 @@ gunicorn
 django-heroku
 Django
 crispy-bootstrap5
+whitenoise
