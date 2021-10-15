@@ -4,3 +4,4 @@ django-heroku
 Django
 crispy-bootstrap5
 whitenoise
+social-auth-app-django
