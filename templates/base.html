@@ -36,6 +36,15 @@
         <input class="form-control me-sm-2" type="text" placeholder="Search">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
       </form>
+
+      {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="/accounts/logout">Logout</a>
+      {% else %}
+        <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+          Login
+        </a>
+      {% endif %}
+
     </div>
   </div>
 </nav>
@@ -46,9 +55,9 @@
   </div>
 
 <footer>
-    <div class="navbar fixed-bottom">
-        <span class="text-light">copyright 2021</span>
-    </div>
+  <div class="navbar fixed-bottom">
+    <span class="text-light">copyright 2021</span>
+  </div>
 </footer>
 
 </body>
