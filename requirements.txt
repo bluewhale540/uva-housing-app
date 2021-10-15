@@ -5,3 +5,5 @@ Django
 crispy-bootstrap5
 whitenoise
 social-auth-app-django
+psycopg2-binary
+dj-database-url
