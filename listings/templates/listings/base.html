@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="{% static 'projectb11/bootstrap.min.css' %}">
+</head>
+
+<body>
+
+<!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="">project-b11</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">link1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">link2</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">link3</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="/accounts/logout">Logout</a>
+      {% else %}
+        <a class="btn btn-primary" href="{% url 'social:begin' 'google-oauth2' %}">
+          Login
+        </a>
+      {% endif %}
+
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+<footer>
+  <div class="navbar fixed-bottom">
+    <span class="text-light">copyright 2021</span>
+  </div>
+</footer>
+
+</body>
+</html>

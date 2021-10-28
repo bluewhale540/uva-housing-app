@@ -1,0 +1,15 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+{% if listing_list %}
+    <ul>
+    {% for listing in listing_list %}
+        <div class="container text-center">
+            <li><a href="{% url 'listing:index' listing.address %}">{{ listing.address }}</a></li>
+        </div>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No listings are available.</p>
+{% endif %}
+{% endblock %}
