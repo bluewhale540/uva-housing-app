@@ -1,22 +1,24 @@
 from django.db import models
 
+
 # Create your models here.
 class Listing(models.Model):
-      
     # long & lat are for gps coords
-    #longitude = models.FloatField()
-    #latitude = models.FloatField()
+    # longitude = models.FloatField()
+    # latitude = models.FloatField()
 
     address = models.CharField(max_length=250)
     rating = models.FloatField()  # average of ratings from reviews
     type = models.CharField(max_length=25)  # either house or apt
     rent = models.IntegerField()  # in $
-    #dateListed = models.DateTimeField()
+
+    # dateListed = models.DateTimeField()
 
     def __str__(self):
         return self.address
 
     # possible methods: was_listed_recent
+
 
 class Review(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
@@ -27,4 +29,4 @@ class Review(models.Model):
     review_text = models.CharField(max_length=10000)
 
     def __str__(self):
-        return review_text
+        return self.review_text
