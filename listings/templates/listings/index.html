@@ -1,11 +1,11 @@
-{% extends 'listings/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 {% if listing_list %}
     <ul>
     {% for listing in listing_list %}
-        <div class="container text-center">
-            <li><a href="{% url 'listing:index' listing.address %}">{{ listing.address }}</a></li>
+        <div class="container text-left">
+            <li>{{ listing.address }}</li>
         </div>
     {% endfor %}
     </ul>

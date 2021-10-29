@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('projectb11.urls')),
     path('', include('social_django.urls', namespace='social')),
-    path('accounts/', include('login.urls'))
+    path('accounts/', include('login.urls')),
+    path('listings/', include('listings.urls', namespace='listing'))
 ]
