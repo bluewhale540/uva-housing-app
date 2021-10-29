@@ -20,10 +20,10 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="">Home</a>
+          <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">link1</a>
+          <a class="nav-link" href="/listings">Listings</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="">link2</a>
@@ -32,10 +32,6 @@
           <a class="nav-link" href="">link3</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
 
       {% if user.is_authenticated %}
         <a class="btn btn-primary" href="/accounts/logout">Logout</a>
