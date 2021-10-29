@@ -14,6 +14,15 @@ class IndexView(generic.ListView):
         return Listing.objects.all()
 
 
+class DetailView(generic.DetailView):
+    model = Listing
+    template_name = 'listings/detail.html'
+
+    def get_queryset(self):
+        # no special filtering here
+        return Listing.objects.all()
+
+
 def review(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
     form = ReviewForm(request.POST)

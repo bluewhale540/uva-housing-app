@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <legend><h1>Reviews for {{ listing.address }}</h1></legend>
+{% for review in listing.review_set.all %}
+    <div class="card text-white bg-primary mb-3" style="max-width: 100rem;">
+    <div class="card-header">{{ review.user }}</div>
+    <div class="card-body">
+      <h4 class="card-title">{{ review.rating }}</h4>
+      <p class="card-text">{{ review.review_text }}</p>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

@@ -4,7 +4,14 @@
 {% if listing_list %}
     <ul>
     {% for listing in listing_list %}
-        <li><a href="{% url 'listings:review' listing.id %}">{{ listing.address }}</a></li>
+      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+      <div class="card-header">{{ listing.address }}</div>
+      <div class="card-body">
+      <h4 class="card-title">{{ listing.type }}</h4>
+      <p class="card-text">{{ listing.rent }}</p>
+        <a href="{% url 'listings:detail' listing.id %}">{{ listing.address }} class="btn btn-primary stretched-link">Read Reviews</a>
+      </div>
+      </div>
     {% endfor %}
     </ul>
 {% else %}
