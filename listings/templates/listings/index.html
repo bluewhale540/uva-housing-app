@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <legend><h1>Here's what we found:</h1></legend>
 {% if listing_list %}
     <ul>
     {% for listing in listing_list %}
@@ -9,7 +10,7 @@
       <div class="card-body">
       <h4 class="card-title">{{ listing.type }}</h4>
       <p class="card-text">{{ listing.rent }}</p>
-        <a href="{% url 'listings:detail' listing.id %}">{{ listing.address }} class="btn btn-primary stretched-link">Read Reviews</a>
+        <a href="{% url 'listings:detail' listing.id %}" class="btn btn-secondary stretched-link">Read Reviews</a>
       </div>
       </div>
     {% endfor %}
