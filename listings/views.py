@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from django.views import generic
 from .models import Listing, Review
+from .forms import ReviewForm
+
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -10,3 +12,12 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Listing.objects.all()
+
+
+def review(request, listing_id):
+    listing = get_object_or_404(Listing, pk=listing_id)
+    form = ReviewForm(request.POST)
+    return render(request, 'listings/review.html', {
+        'listing': listing,
+        'form': form
+    })

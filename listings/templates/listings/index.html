@@ -4,9 +4,7 @@
 {% if listing_list %}
     <ul>
     {% for listing in listing_list %}
-        <div class="container text-left">
-            <li>{{ listing.address }}</li>
-        </div>
+        <li><a href="{% url 'listings:review' listing.id %}">{{ listing.address }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

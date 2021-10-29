@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<form action="{% url 'listings:review' listing.id%}" method="post">
+  {% csrf_token %}
+  {% block content %}
+    <legend><h1>{{ listing.address }}</h1></legend>
+  {% crispy form %}
+  {% endblock %}
+</form>
