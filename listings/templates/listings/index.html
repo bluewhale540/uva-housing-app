@@ -10,6 +10,7 @@
       <div class="card-body">
       <h4 class="card-title">{{ listing.address }}</h4>
       <p class="card-text">${{ listing.rent }}/month</p>
+          <p class="card-text">Rating: {{listing.rating}}</p>
         <a href="{% url 'listings:detail' listing.id %}" class="btn btn-secondary stretched-link">More Info</a>
       </div>
       </div>
