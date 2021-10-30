@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
+{% if listing.review_set.all %}
   <legend><h1>Reviews for {{ listing.address }}</h1></legend>
 {% for review in listing.review_set.all %}
   {% if review.rating == 5 %}
@@ -31,4 +33,16 @@
     </div>
   {% endif %}
 {% endfor %}
+{% else %}
+    <p>No reviews are available.</p>
+{% endif %}
+<a class="btn btn-primary mt-2" href="{% url 'listings:review' listing.id%}">Submit a review</a>
 {% endblock %}
+
+
+
+
+
+
+
+

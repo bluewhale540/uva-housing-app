@@ -21,7 +21,7 @@ class Listing(models.Model):
 
 
 class Review(models.Model):
-    user = models.CharField(max_length=100, default='anonymous')
+    user = models.CharField(max_length=100, default='Anonymous')
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
     rating = models.IntegerField()  # will need some kind of validation system so input is 1-5
     # ratings maybe should be able to be submitted without a write-up. like just a star rating
