@@ -10,7 +10,38 @@
       <div class="card-body">
       <h4 class="card-title">{{ listing.address }}</h4>
       <p class="card-text">${{ listing.rent }}/month</p>
-          <p class="card-text">Rating: {{listing.rating}}</p>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <p class="card-text">Rating: {{listing.rating}}
+              {% load static %}
+              <link rel="stylesheet" type="text/css" href="{% static 'projectb11/stars.css' %}">
+              {% if listing.rating == 5 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+              {% endif %}
+              {% if listing.rating >= 4.5 and listing.rating < 5 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star half"></span>
+              {% endif %}
+              {% if listing.rating >= 4 and listing.rating < 4.5 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>
+              {% endif %}
+              {% if listing.rating >= 3.5 and listing.rating < 4 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star half"></span><span class="fa fa-star empty"></span>
+              {% endif %}
+              {% if listing.rating >= 3 and listing.rating < 3.5 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+              {% endif %}
+              {% if listing.rating >= 2.5 and listing.rating < 3 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star half"></span><span class="fa fa-star empty"></span><span class="fa fa-star"></span>
+              {% endif %}
+              {% if listing.rating >= 2 and listing.rating < 2.5 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+              {% endif %}
+              {% if listing.rating >= 1.5 and listing.rating < 2 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star half"></span><span class="fa fa-star empty"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+              {% endif %}
+              {% if listing.rating >= 1 and listing.rating < 1.5 %}
+                <span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+              {% endif %}
+          </p>
         <a href="{% url 'listings:detail' listing.id %}" class="btn btn-secondary stretched-link">More Info</a>
       </div>
       </div>
@@ -20,3 +51,6 @@
     <p>No listings are available.</p>
 {% endif %}
 {% endblock %}
+
+
+

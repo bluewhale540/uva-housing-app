@@ -1,0 +1,17 @@
+.checked {
+    color: orange;
+}
+
+.half:before {
+    content: '\f005';
+}
+
+.half:after {
+    content: '\f089';
+    color: orange;
+    margin-left: -15px;
+}
+
+.empty {
+    margin-left: 5px;
+}
