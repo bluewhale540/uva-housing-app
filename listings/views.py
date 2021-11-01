@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
     context_object_name = 'listing_list'
 
     def get_queryset(self):
-        return Listing.objects.all()
+        return Listing.objects.order_by('-rating')
 
 
 class DetailView(generic.DetailView):
