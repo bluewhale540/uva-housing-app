@@ -1,70 +1,43 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'projectb11/stars.css' %}">
+
 {% if listing.review_set.all %}
   <legend><h1>Reviews for {{ listing.address }}</h1></legend>
+
 {% for review in listing.review_set.all %}
   {% if review.rating == 5 %}
     <div class="card text-white bg-primary mb-3" style="max-width: 100rem;">
-    <div class="card-header">{{ review.user }}</div>
-    <div class="card-body">
-      <h4 class="card-title">Rating: {{ review.rating }}
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'projectb11/stars.css' %}">
-        <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
-      </h4>
-      <p class="card-text">{{ review.review_text }}</p>
-    </div>
-    </div>
   {% endif %}
-
   {% if review.rating == 3 or review.rating == 4 %}
     <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
-    <div class="card-header">{{ review.user }}</div>
-    <div class="card-body">
-      <h4 class="card-title">Rating: {{ review.rating }}
-        {% if review.rating == 4 %}
-          <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>
-        {% endif %}
-        {% if review.rating == 3 %}
-          <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
-        {% endif %}
-      </h4>
-      <p class="card-text">{{ review.review_text }}</p>
-    </div>
-    </div>
   {% endif %}
-
   {% if review.rating == 1 or review.rating == 2 %}
     <div class="card text-white bg-danger mb-3" style="max-width: 100rem;">
+  {% endif %}
+
     <div class="card-header">{{ review.user }}</div>
     <div class="card-body">
       <h4 class="card-title">Rating: {{ review.rating }}
-        {% if review.rating == 2 %}
-          <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
-        {% endif %}
-        {% if review.rating == 1 %}
-          <span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
-        {% endif %}
+        {% for i in "s"|rjust:listing.rating %}
+          <span class="fa fa-star checked"></span>
+        {% endfor %}
       </h4>
       <p class="card-text">{{ review.review_text }}</p>
     </div>
     </div>
-  {% endif %}
 
 {% endfor %}
+
 {% else %}
     <p>No reviews are available.</p>
 {% endif %}
-<a class="btn btn-primary mt-2" href="{% url 'listings:review' listing.id%}">Submit a review</a>
+
+<a class="btn btn-primary" href="{% url 'listings:review' listing.id%}">Submit a review</a>
+
 {% endblock %}
-
-
-
-
-
-
-
 

@@ -24,19 +24,3 @@ class ReviewForm(forms.Form):
         )
     )
 
-
-'''
-class ReviewForm(forms.ModelForm):
-    class Meta:
-        model = Listing
-        fields = []
-
-    def __init__(self, *args, **kwargs):
-        listing = kwargs.pop('listing')
-        print(listing)
-        super(ReviewForm, self).__init__(*args, *kwargs)
-        self.title = "listing"
-        self.fields['Reviews'] = forms.ModelChoiceField(widget=forms.RadioSelect,
-                                                        queryset=Review.objects.filter(listing=listing))
-        self.helper = FormHelper(self)
-'''
