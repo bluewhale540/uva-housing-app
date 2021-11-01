@@ -13,7 +13,7 @@
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
           <p class="card-text">Rating: {{listing.rating}}
               {% load static %}
-              <link rel="stylesheet" type="text/css" href="{% static 'projectb11/stars.css' %}">
+              <link rel="stylesheet" type="text/css" href="{% static 'home/stars.css' %}">
               {% if listing.rating == 5 %}
                 <span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
               {% endif %}
