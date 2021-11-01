@@ -23,7 +23,7 @@
     <div class="card-header">{{ review.user }}</div>
     <div class="card-body">
       <h4 class="card-title">Rating: {{ review.rating }}
-        {% for i in "s"|rjust:listing.rating %}
+        {% for i in "s"|rjust:review.rating %}
           <span class="fa fa-star checked"></span>
         {% endfor %}
       </h4>
