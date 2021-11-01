@@ -2,9 +2,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field
 from crispy_forms.bootstrap import FormActions
 from django import forms
-from .models import Review
-
-from listings.models import Listing, Review
+from .models import Listing, Review
 
 RATINGS = [tuple([x, x]) for x in range(1, 6)]
 
