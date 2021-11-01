@@ -39,6 +39,11 @@ def review(request, listing_id):
         rev.rating = form.cleaned_data['rating']
         rev.review_text = form.cleaned_data['review']
         rev.save()
+
+        setattr(listing, "rating", (listing.rating * listing.review_num + int(rev.rating)) / (listing.review_num + 1))
+        setattr(listing, "review_num", listing.review_num + 1)
+        listing.save()
+
         return HttpResponseRedirect(reverse('listings:detail', kwargs={'pk': listing_id}))
     else:
         form = ReviewForm()

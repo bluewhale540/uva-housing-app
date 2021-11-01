@@ -8,7 +8,9 @@ class Listing(models.Model):
     # latitude = models.FloatField()
 
     address = models.CharField(max_length=250)
-    rating = models.FloatField()  # average of ratings from reviews
+    rating = models.FloatField(default=0)  # average of ratings from reviews
+    review_num = models.IntegerField(default=0)
+
     type = models.CharField(max_length=25)  # either house or apt
     rent = models.IntegerField()  # in $
 
