@@ -20,6 +20,11 @@ class Listing(models.Model):
     # possible methods: was_listed_recent
 
 
+class ListingImage(models.Model):
+    listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
+    image = models.ImageField()
+
+
 class Review(models.Model):
     user = models.CharField(max_length=100, default='anonymous')
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
