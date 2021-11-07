@@ -11,10 +11,10 @@
     <ul>
     {% for listing in listing_list %}
       <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-      {% if listing.type == 0 %}
-        <div class="card-header">apartment</div>
-      {% else %}
+      {% if listing.is_house%}
         <div class="card-header">house</div>
+      {% else %}
+        <div class="card-header">apartment</div>
       {% endif %}
 
       <div class="card-body">
