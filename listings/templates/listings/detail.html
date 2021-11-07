@@ -57,7 +57,10 @@
     <div class="card text-white bg-danger mb-3" style="max-width: 100rem;">
   {% endif %}
 
-    <div class="card-header">{{ review.user }}
+    <div class="card-header">
+      <span class="left">{{ review.user }}</span>
+      <span class="right">{{ review.date }}</span>
+    </div>
     <div class="card-body">
       <h4 class="card-title">Rating: {{ review.rating }}
         {% for i in "s"|rjust:review.rating %}
