@@ -11,7 +11,12 @@
     <ul>
     {% for listing in listing_list %}
       <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-      <div class="card-header">{{ listing.type }}</div>
+      {% if listing.type == 0 %}
+        <div class="card-header">apartment</div>
+      {% else %}
+        <div class="card-header">house</div>
+      {% endif %}
+
       <div class="card-body">
       <h4 class="card-title">{{ listing.address }}</h4>
       <p class="card-text">${{ listing.rent }}/month</p>

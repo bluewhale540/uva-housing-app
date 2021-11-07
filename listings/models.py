@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 # Create your models here.
@@ -8,9 +9,13 @@ class Listing(models.Model):
     # latitude = models.FloatField()
 
     address = models.CharField(max_length=250)
+    name = models.CharField(max_length=100, default='NO_NAME')
     rating = models.FloatField()  # average of ratings from reviews
-    type = models.CharField(max_length=25)  # either house or apt
+    type = models.IntegerField()  # 0 = apt, 1 = house
     rent = models.IntegerField()  # in $
+    beds = models.IntegerField(default=0)
+    baths = models.IntegerField(default=0)
+    desc = models.TextField(default='NO_DESCRIPTION')  # description of listing
 
     # dateListed = models.DateTimeField()
 
@@ -22,12 +27,13 @@ class Listing(models.Model):
 
 class ListingImage(models.Model):
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='images/')
 
 
 class Review(models.Model):
     user = models.CharField(max_length=100, default='anonymous')
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
+    date = models.DateTimeField('date posted', default=timezone.now())
     rating = models.IntegerField()  # will need some kind of validation system so input is 1-5
     # ratings maybe should be able to be submitted without a write-up. like just a star rating
     # if we do this, we should then only display reviews with non-empty review_text fields
