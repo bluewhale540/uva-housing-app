@@ -43,7 +43,22 @@
   </div>
 
 
-  <legend><h1>Reviews for {{ listing.address }}</h1></legend>
+  <div class="row">
+    <div class="col mb-2">
+      <h1>Reviews for {{ listing.address }}</h1>
+    </div>
+    <div class="col">
+      <div class="dropdown">
+      <button class="btn pull-right btn-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Rating</a>
+        <a class="dropdown-item" href="#">Date</a>
+      </div>
+  </div>
+    </div>
+  </div>
 
 {% if listing.review_set.all %}
 {% for review in listing.review_set.all %}
