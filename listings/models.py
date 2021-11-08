@@ -28,7 +28,7 @@ class Listing(models.Model):
     beds = models.IntegerField(default=0)
     baths = models.IntegerField(default=0)
     desc = models.TextField(default='NO_DESCRIPTION')  # description of listing
-    link = models.URLField(max_length=100)
+    link = models.URLField(max_length=100, default='NO_LINK')
 
     # dateListed = models.DateTimeField()
 

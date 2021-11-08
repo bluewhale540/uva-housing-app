@@ -18,6 +18,7 @@
       {% endif %}
 
       <div class="card-body">
+      <h4 class="card-title">{{ listing.name }}</h4>
       <h4 class="card-title">{{ listing.address }}</h4>
       <p class="card-text">${{ listing.rent }}/month</p>
         <p class="card-text">Rating: {{listing.rating|floatformat }}
