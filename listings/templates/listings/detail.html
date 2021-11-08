@@ -91,8 +91,9 @@
 {% else %}
     <p>No reviews are available.</p>
 {% endif %}
-
-<a class="btn btn-primary" href="{% url 'listings:review' listing.id%}">Submit a review</a>
+{% if user.is_authenticated %}
+  <a class="btn btn-primary" href="{% url 'listings:review' listing.id%}">Submit a review</a>
+{% endif %}
 
 {% endblock %}
 

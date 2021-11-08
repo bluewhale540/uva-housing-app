@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
-
+{% block content %}
+{% if user.is_authenticated %}
 <form action="{% url 'listings:review' listing.id%}" method="post">
   {% csrf_token %}
-  {% block content %}
     <legend><h1>{{ listing.address }}</h1></legend>
   {% crispy form %}
-  {% endblock %}
 </form>
+{% endif %}
+{% endblock %}
