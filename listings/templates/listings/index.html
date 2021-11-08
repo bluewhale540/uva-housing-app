@@ -8,9 +8,10 @@
 
   <legend><h1>Here's what we found:</h1></legend>
 {% if listing_list %}
-    <ul>
+  <div class="row">
     {% for listing in listing_list %}
-      <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+      <div class="col-lg-3 d-flex align-items-stretch">
+      <div class="card text-white bg-primary mb-3 w-100" style="max-width: 20rem;">
       {% if listing.is_house%}
         <div class="card-header">house</div>
       {% else %}
@@ -19,7 +20,6 @@
 
       <div class="card-body">
       <h4 class="card-title">{{ listing.name }}</h4>
-      <h4 class="card-title">{{ listing.address }}</h4>
       <p class="card-text">${{ listing.rent }}/month</p>
         <p class="card-text">Rating: {{listing.rating|floatformat }}
         {% for i in "s"|rjust:listing.rating %}
@@ -29,8 +29,9 @@
         <a href="{% url 'listings:detail' listing.id 'date' %}" class="btn btn-secondary stretched-link">More Info</a>
       </div>
       </div>
+      </div>
     {% endfor %}
-    </ul>
+  </div>
 {% else %}
     <p>No listings are available.</p>
 {% endif %}
