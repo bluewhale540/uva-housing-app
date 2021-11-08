@@ -52,41 +52,41 @@
       <button class="btn pull-right btn-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Sort by
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Rating</a>
-        <a class="dropdown-item" href="#">Date</a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="sortDropdown">
+        <a class="dropdown-item" href={% url 'listing:detail' listing.id 'date' %}>Date</a>
+        <a class="dropdown-item" href={% url 'listing:detail' listing.id 'rating' %}>Rating</a>
       </div>
   </div>
     </div>
   </div>
 
-{% if listing.review_set.all %}
-{% for review in listing.review_set.all %}
-  {% if review.rating == 5 %}
-    <div class="card text-white bg-primary mb-3" style="max-width: 100rem;">
-  {% endif %}
-  {% if review.rating == 3 or review.rating == 4 %}
-    <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
-  {% endif %}
-  {% if review.rating == 1 or review.rating == 2 %}
-    <div class="card text-white bg-danger mb-3" style="max-width: 100rem;">
-  {% endif %}
+<div id="reviews">
+  {% if listing.review_set.all %}
+    {% for review in listing.review_set.all|dictsortreversed:order%}
+      {% if review.rating == 5 %}
+        <div class="card text-white bg-primary mb-3" style="max-width: 100rem;">
+      {% endif %}
+      {% if review.rating == 3 or review.rating == 4 %}
+        <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
+      {% endif %}
+      {% if review.rating == 1 or review.rating == 2 %}
+        <div class="card text-white bg-danger mb-3" style="max-width: 100rem;">
+      {% endif %}
 
-    <div class="card-header">
-      <span class="left">{{ review.user }}</span>
-      <span class="right">{{ review.date }}</span>
-    </div>
-    <div class="card-body">
-      <h4 class="card-title">Rating: {{ review.rating }}
-        {% for i in "s"|rjust:review.rating %}
-          <span class="fa fa-star checked"></span>
-        {% endfor %}
-      </h4>
-      <p class="card-text">{{ review.review_text }}</p>
-    </div>
-    </div>
-
-{% endfor %}
+        <div class="card-header">
+          <span class="left">{{ review.user }}</span>
+          <span class="right">{{ review.date }}</span>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Rating: {{ review.rating }}
+            {% for i in "s"|rjust:review.rating %}
+              <span class="fa fa-star checked"></span>
+            {% endfor %}
+          </h4>
+          <p class="card-text">{{ review.review_text }}</p>
+        </div>
+        </div>
+    {% endfor %}
 
 {% else %}
     <p>No reviews are available.</p>

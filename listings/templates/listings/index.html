@@ -25,7 +25,7 @@
           <span class="fa fa-star checked"></span>
         {% endfor %}
         </p>
-        <a href="{% url 'listings:detail' listing.id %}" class="btn btn-secondary stretched-link">More Info</a>
+        <a href="{% url 'listings:detail' listing.id 'date' %}" class="btn btn-secondary stretched-link">More Info</a>
       </div>
       </div>
     {% endfor %}
