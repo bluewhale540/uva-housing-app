@@ -39,7 +39,8 @@ class ListingForm(ModelForm):
 
     class Meta:
         model = Listing
-        fields = ['address', 'name', 'is_house', 'rating', 'rent', 'beds', 'baths', 'desc', 'link']
+        fields = ['address', 'name', 'is_house', 'aircon', 'furnished', 'has_pool', 'pets_allowed', 'has_gym',
+                  'unit_laundry', 'shared_laundry', 'rating', 'rent', 'beds', 'baths', 'desc', 'link']
 
     helper = FormHelper()
     helper.form_class = 'form-horizontal'
@@ -47,6 +48,13 @@ class ListingForm(ModelForm):
         Field('address', rows="1"),
         Field('name', rows="1"),
         Field('is_house', rows="1"),
+        Field('aircon', rows="1"),
+        Field('furnished', rows="1"),
+        Field('has_pool', rows="1"),
+        Field('pets_allowed', rows="1"),
+        Field('has_gym', rows="1"),
+        Field('unit_laundry', rows="1"),
+        Field('shared_laundry', rows="1"),
         Field('rating', rows="1"),
         Field('rent', rows="1"),
         Field('beds', rows="1"),
