@@ -22,7 +22,6 @@ class Listing(models.Model):
     shared_laundry = models.BooleanField(default=False)
 
     rating = models.FloatField()  # average of ratings from reviews
-    review_num = models.IntegerField(default=0)
 
     rent = models.IntegerField()  # in $
     beds = models.IntegerField(default=0)

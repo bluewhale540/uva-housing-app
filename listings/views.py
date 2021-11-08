@@ -48,8 +48,15 @@ def review(request, listing_id):
         rev.review_text = form.cleaned_data['review']
         rev.save()
 
-        setattr(listing, "rating", (listing.rating * listing.review_num + int(rev.rating)) / (listing.review_num + 1))
-        setattr(listing, "review_num", listing.review_num + 1)
+        reviews = Review.objects.filter(listing_id=listing.id)
+        num = 0
+        rating = 0
+        for review in reviews:
+           num += 1
+           rating += review.rating 
+
+        setattr(listing, "rating", rating/num)
+
         listing.save()
 
         return HttpResponseRedirect(reverse('listings:detail_rev', kwargs={'pk': listing_id}))
@@ -74,7 +81,6 @@ def listing_view(request):
         listing.name = form.cleaned_data['name']
         listing.is_house = form.cleaned_data['is_house']
         listing.rating = form.cleaned_data['rating']
-        listing.review_num = form.cleaned_data['review_num']
         listing.rent = form.cleaned_data['rent']
         listing.beds = form.cleaned_data['beds']
         listing.baths = form.cleaned_data['baths']
