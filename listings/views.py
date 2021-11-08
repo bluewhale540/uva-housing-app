@@ -72,6 +72,7 @@ def listing_view(request):
 
         listing.address = form.cleaned_data['address']
         listing.name = form.cleaned_data['name']
+        listing.link = form.cleaned_data['link']
         listing.is_house = form.cleaned_data['is_house']
         listing.rating = form.cleaned_data['rating']
         listing.review_num = form.cleaned_data['review_num']

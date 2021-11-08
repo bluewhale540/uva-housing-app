@@ -10,6 +10,7 @@ class Listing(models.Model):
 
     address = models.CharField(max_length=250)
     name = models.CharField(max_length=100, default='NO_NAME')
+    link = models.CharField(max_length=100)
     is_house = models.BooleanField()  # 0 = apt, 1 = house
 
     # amenities

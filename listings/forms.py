@@ -28,6 +28,7 @@ class ListingForm(ModelForm):
     """
     address = forms.CharField(widget=forms.Textarea)
     name = forms.CharField(widget=forms.Textarea)
+    link = forms.CharField(widget=forms.Textarea)
     is_house = forms.BooleanField()  # 0 = apt, 1 = house
     rating = forms.FloatField()  # average of ratings from reviews
     review_num = forms.IntegerField(default=0)
@@ -39,13 +40,14 @@ class ListingForm(ModelForm):
 
     class Meta:
         model = Listing
-        fields = ['address', 'name', 'is_house', 'rating', 'review_num', 'rent', 'beds', 'baths', 'desc']
+        fields = ['address', 'name', 'link', 'is_house', 'rating', 'review_num', 'rent', 'beds', 'baths', 'desc']
 
     helper = FormHelper()
     helper.form_class = 'form-horizontal'
     helper.layout = Layout(
         Field('address', rows="1"),
         Field('name', rows="1"),
+        Field('link', rows="1"),
         Field('is_house', rows="1"),
         Field('rating', rows="1"),
         Field('review_num', rows="1"),
