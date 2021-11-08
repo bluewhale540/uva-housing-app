@@ -10,7 +10,7 @@ class ListingModelTests(TestCase):
         address = "123 road street"
         is_house = True
         rent = 800
-        l = Listing(address=address, type=type, rent=rent)
+        l = Listing(address=address, is_house=is_house, rent=rent)
         self.assertTrue(l)
 
 
@@ -21,16 +21,16 @@ class ReviewModelTests(TestCase):
         address = "123 road street"
         is_house = True
         rent = 800
-        l = Listing(address=address, type=type, rent=rent)
+        l = Listing(address=address, is_house=is_house, rent=rent)
         r = Review(listing=l, rating=3, review_text="ok")
         self.assertTrue(r)
 
     # confirm review_num updates properly
     def add_rating(self):
         address = "123 road street"
-        type = "house"
+        is_house = True
         rent = 800
-        l = Listing(address=address, type=type, rent=rent)
+        l = Listing(address=address, is_house=is_house, rent=rent)
         Review(listing=l, rating=4, review_text="good")
         Review(listing=l, rating=5, review_text="great")
         self.assertEqual(l.review_num, 2)
