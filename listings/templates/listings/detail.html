@@ -12,7 +12,7 @@
   <h2>Photos</h2>
   <div class="row mb-3 h-25">
   {% for img in listing.listingimage_set.all %}
-    <div class="col-3">
+    <div class="col">
       <img alt="" src="{{ img.image.url }}" class="img-responsive mw-100" >
     </div>
   {% endfor %}
