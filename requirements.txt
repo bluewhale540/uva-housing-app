@@ -8,3 +8,6 @@ social-auth-app-django
 psycopg2-binary
 dj-database-url
 Pillow
+boto3
+django-storages
+django-crispy-forms
