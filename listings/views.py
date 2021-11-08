@@ -79,6 +79,7 @@ def listing_view(request):
         listing.beds = form.cleaned_data['beds']
         listing.baths = form.cleaned_data['baths']
         listing.desc = form.cleaned_data['desc']
+        listing.link = form.cleaned_data['link']
         listing.save()
 
         return HttpResponseRedirect(reverse('listings:index'))
