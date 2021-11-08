@@ -10,7 +10,6 @@ class Listing(models.Model):
 
     address = models.CharField(max_length=250)
     name = models.CharField(max_length=100, default='NO_NAME')
-    rating = models.FloatField()  # average of ratings from reviews
     is_house = models.BooleanField()  # 0 = apt, 1 = house
 
     # amenities
@@ -22,6 +21,8 @@ class Listing(models.Model):
     unit_laundry = models.BooleanField(default=False)
     shared_laundry = models.BooleanField(default=False)
 
+    rating = models.FloatField()  # average of ratings from reviews
+    review_num = models.IntegerField(default=0)
     rent = models.IntegerField()  # in $
     beds = models.IntegerField(default=0)
     baths = models.IntegerField(default=0)
