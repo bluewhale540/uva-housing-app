@@ -22,7 +22,10 @@ class DetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['order'] = self.kwargs['order']
+        if 'order' in self.kwargs:
+            context['order'] = self.kwargs['order']
+        else:
+            context['order'] = 'date'
         return context
 
     def get_queryset(self):
@@ -34,7 +37,7 @@ def review(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
     form = ReviewForm(request.POST)
     if 'cancel' in request.POST:
-        return HttpResponseRedirect(reverse('listings:detail', kwargs={'pk': listing_id}))
+        return HttpResponseRedirect(reverse('listings:detail_rev', kwargs={'pk': listing_id}))
 
     if form.is_valid():
         rev = Review()
@@ -49,7 +52,7 @@ def review(request, listing_id):
         setattr(listing, "review_num", listing.review_num + 1)
         listing.save()
 
-        return HttpResponseRedirect(reverse('listings:detail', kwargs={'pk': listing_id}))
+        return HttpResponseRedirect(reverse('listings:detail_rev', kwargs={'pk': listing_id}))
     else:
         form = ReviewForm()
 

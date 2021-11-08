@@ -45,7 +45,7 @@ class ListingImage(models.Model):
 class Review(models.Model):
     user = models.CharField(max_length=100, default='anonymous')
     listing = models.ForeignKey(Listing, on_delete=models.CASCADE)
-    date = models.DateTimeField('date posted', default=timezone.now())
+    date = models.DateTimeField('date posted', default=timezone.now)
     rating = models.IntegerField()  # will need some kind of validation system so input is 1-5
     # ratings maybe should be able to be submitted without a write-up. like just a star rating
     # if we do this, we should then only display reviews with non-empty review_text fields
