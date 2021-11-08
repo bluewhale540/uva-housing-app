@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from django.views import generic
 from .models import Listing, Review
-from .forms import ReviewForm
+from .forms import ReviewForm, ListingForm
 
 
 # Create your views here.
@@ -60,3 +60,29 @@ def review(request, listing_id):
         'listing': listing,
         'form': form
     })
+
+
+def listing_view(request):
+    form = ListingForm(request.POST)
+    if 'cancel' in request.POST:
+        return HttpResponseRedirect(reverse('listings:index'))
+
+    if form.is_valid():
+        listing = Listing()
+
+        listing.address = form.cleaned_data['address']
+        listing.name = form.cleaned_data['name']
+        listing.is_house = form.cleaned_data['is_house']
+        listing.rating = form.cleaned_data['rating']
+        listing.review_num = form.cleaned_data['review_num']
+        listing.rent = form.cleaned_data['rent']
+        listing.beds = form.cleaned_data['beds']
+        listing.baths = form.cleaned_data['baths']
+        listing.desc = form.cleaned_data['desc']
+        listing.save()
+
+        return HttpResponseRedirect(reverse('listings:index'))
+    else:
+        form = ListingForm()
+
+    return render(request, 'listings/addlisting.html', {'form': form})

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_authenticated %}
+<form action="{% url 'listings:add' %}" method="post">
+  {% csrf_token %}
+    <legend><h1>Add Listing</h1></legend>
+  {% crispy form %}
+</form>
+{% endif %}
+{% endblock %} 
