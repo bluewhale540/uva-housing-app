@@ -12,11 +12,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='listing',
-            name='review_num',
-            field=models.IntegerField(default=0),
-        ),
         migrations.AlterField(
             model_name='review',
             name='date',
