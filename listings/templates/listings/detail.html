@@ -49,14 +49,14 @@
     </div>
     <div class="col">
       <div class="dropdown">
-      <button class="btn pull-right btn-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button class="btn pull-right btn-secondary dropdown-toggle mt-1" role="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Sort by
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="sortDropdown">
         <a class="dropdown-item" href={% url 'listing:detail' listing.id 'date' %}>Date</a>
         <a class="dropdown-item" href={% url 'listing:detail' listing.id 'rating' %}>Rating</a>
       </div>
-  </div>
+    </div>
     </div>
   </div>
 
