@@ -6,32 +6,87 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'home/stars.css' %}">
 
-{% if listing.review_set.all %}
-  <legend><h1>Reviews for {{ listing.address }}</h1></legend>
+  <legend><h1>Learn more about {{ listing.address }}</h1></legend>
 
-{% for review in listing.review_set.all|dictsortreversed:"rating" %}
-  {% if review.rating == 5 %}
-    <div class="card text-white bg-primary mb-3" style="max-width: 100rem;">
-  {% endif %}
-  {% if review.rating == 3 or review.rating == 4 %}
-    <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
-  {% endif %}
-  {% if review.rating == 1 or review.rating == 2 %}
-    <div class="card text-white bg-danger mb-3" style="max-width: 100rem;">
-  {% endif %}
-
-    <div class="card-header">{{ review.user }}</div>
-    <div class="card-body">
-      <h4 class="card-title">Rating: {{ review.rating }}
-        {% for i in "s"|rjust:review.rating %}
-          <span class="fa fa-star checked"></span>
-        {% endfor %}
-      </h4>
-      <p class="card-text">{{ review.review_text }}</p>
+  {% if listing.listingimage_set.all %}
+  <h2>Photos</h2>
+  <div class="row mb-3 h-25">
+  {% for img in listing.listingimage_set.all %}
+    <div class="col-3">
+      <img alt="" src="{{ img.image.url }}" class="img-responsive mw-100" >
     </div>
-    </div>
+  {% endfor %}
+  </div>
+  {% endif %}
 
-{% endfor %}
+  <h2>Description</h2>
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <p>{{ listing.desc }}</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <ul class="list-group mb-3">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Number of bedrooms
+        <span class="badge bg-primary rounded-pill">{{ listing.beds }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Number of bathrooms
+        <span class="badge bg-primary rounded-pill">{{ listing.baths }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        Rent
+        <span class="badge bg-primary rounded-pill">{{ listing.rent }}</span>
+      </li>
+    </ul>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col mb-2">
+      <h1>Reviews for {{ listing.address }}</h1>
+    </div>
+    <div class="col">
+      <div class="dropdown">
+      <button class="btn pull-right btn-secondary dropdown-toggle mt-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort by
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="sortDropdown">
+        <a class="dropdown-item" href={% url 'listing:detail' listing.id 'date' %}>Date</a>
+        <a class="dropdown-item" href={% url 'listing:detail' listing.id 'rating' %}>Rating</a>
+      </div>
+  </div>
+    </div>
+  </div>
+
+<div id="reviews">
+  {% if listing.review_set.all %}
+    {% for review in listing.review_set.all|dictsortreversed:order%}
+      {% if review.rating == 5 %}
+        <div class="card text-white bg-primary mb-3" style="max-width: 100rem;">
+      {% endif %}
+      {% if review.rating == 3 or review.rating == 4 %}
+        <div class="card text-white bg-info mb-3" style="max-width: 100rem;">
+      {% endif %}
+      {% if review.rating == 1 or review.rating == 2 %}
+        <div class="card text-white bg-danger mb-3" style="max-width: 100rem;">
+      {% endif %}
+
+        <div class="card-header">
+          <span class="left">{{ review.user }}</span>
+          <span class="right">{{ review.date }}</span>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">Rating: {{ review.rating }}
+            {% for i in "s"|rjust:review.rating %}
+              <span class="fa fa-star checked"></span>
+            {% endfor %}
+          </h4>
+          <p class="card-text">{{ review.review_text }}</p>
+        </div>
+        </div>
+    {% endfor %}
 
 {% else %}
     <p>No reviews are available.</p>

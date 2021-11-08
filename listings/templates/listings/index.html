@@ -11,7 +11,12 @@
     <ul>
     {% for listing in listing_list %}
       <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-      <div class="card-header">{{ listing.type }}</div>
+      {% if listing.is_house%}
+        <div class="card-header">house</div>
+      {% else %}
+        <div class="card-header">apartment</div>
+      {% endif %}
+
       <div class="card-body">
       <h4 class="card-title">{{ listing.address }}</h4>
       <p class="card-text">${{ listing.rent }}/month</p>
@@ -20,7 +25,7 @@
           <span class="fa fa-star checked"></span>
         {% endfor %}
         </p>
-        <a href="{% url 'listings:detail' listing.id %}" class="btn btn-secondary stretched-link">More Info</a>
+        <a href="{% url 'listings:detail' listing.id 'date' %}" class="btn btn-secondary stretched-link">More Info</a>
       </div>
       </div>
     {% endfor %}
