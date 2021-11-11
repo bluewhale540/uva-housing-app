@@ -35,12 +35,14 @@ class ListingForm(ModelForm):
     baths = forms.IntegerField(default=0)
     desc = forms.CharField(widget=forms.Textarea)  # description of listing
     link = forms.URLField(widget=forms.Textarea)
+    lat = forms.DecimalField(default=0)
+    lon = forms.DecimalField(default=0)
     """
 
     class Meta:
         model = Listing
         fields = ['address', 'name', 'is_house', 'aircon', 'furnished', 'has_pool', 'pets_allowed', 'has_gym',
-                  'unit_laundry', 'shared_laundry', 'rating', 'rent', 'beds', 'baths', 'desc', 'link']
+                  'unit_laundry', 'shared_laundry', 'rating', 'rent', 'beds', 'baths', 'desc', 'link', 'lat', 'lon']
 
     helper = FormHelper()
     helper.form_class = 'form-horizontal'
@@ -61,6 +63,8 @@ class ListingForm(ModelForm):
         Field('baths', rows="1"),
         Field('desc', rows="5", css_class='input-xlarge'),
         Field('link', rows="1"),
+        Field('lat', rows="1"),
+        Field('lon', rows="1"),
         FormActions(
             Submit('submit', 'Submit', css_class="btn-primary"),
             Submit('cancel', 'Cancel', css_class="btn-secondary", formnovalidate='formnovalidate'),

@@ -6,6 +6,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'home/stars.css' %}">
 
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
   <legend><h1>Learn more about {{ listing.name }}</h1></legend>
 
   {% if listing.listingimage_set.all %}
@@ -41,7 +44,6 @@
     </ul>
     </div>
   </div>
-
 
   <div class="row">
     <div class="col mb-2">
@@ -91,6 +93,20 @@
 {% else %}
     <p>No reviews are available.</p>
 {% endif %}
+
+<body>
+  <div id='map' style='width: 400px; height: 300px;'></div>
+  <script>
+  mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtY3Jvd24iLCJhIjoiY2t2dmRmcTliOHN5dTJxbXNrend2MWhmZCJ9.VMirb5Wp09qyL6VhqFWeIw';
+  var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v10',
+       center: [document.getElementById("id_lat").value, document.getElementById("id_lon").value],
+       zoom: 9
+  });
+  </script>
+  </body>
+
 {% if user.is_authenticated %}
   <a class="btn btn-primary" href="{% url 'listings:review' listing.id%}">Submit a review</a>
 {% endif %}
