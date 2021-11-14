@@ -26,6 +26,7 @@
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <p>{{ listing.desc }}</p>
+      <a href={{ listing.link }}>Looking for more information about this listing?</a>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <ul class="list-group mb-3">
@@ -100,9 +101,9 @@
   mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtY3Jvd24iLCJhIjoiY2t2dmRmcTliOHN5dTJxbXNrend2MWhmZCJ9.VMirb5Wp09qyL6VhqFWeIw';
   var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v10',
-       center: [document.getElementById("id_lat").value, document.getElementById("id_lon").value],
-       zoom: 9
+  style: 'mapbox://styles/mapbox/satellite-streets-v10',
+  center: [{{ listing.lon }}, {{ listing.lat }}],
+  zoom: 16
   });
   </script>
   </body>

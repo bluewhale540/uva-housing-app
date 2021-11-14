@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import requests
 
 from django.views import generic
 from .models import Listing, Review
 from .forms import ReviewForm, ListingForm
 
+GEOCODING_API_KEY = 'AIzaSyB_AAHgx8qJADN8uk1N2Qa_qcDLxm21054'
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -93,6 +95,18 @@ def listing_view(request):
         listing.baths = form.cleaned_data['baths']
         listing.desc = form.cleaned_data['desc']
         listing.link = form.cleaned_data['link']
+
+        info = {'key' : GEOCODING_API_KEY, 'address' : listing.address}
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+
+        response = requests.get(url, params=info).json()
+        if response['status'] == 'OK':
+            lat = response['results'][0]['geometry']['location']['lat']
+            lon = response['results'][0]['geometry']['location']['lng']
+
+        listing.lat = lat
+        listing.lon = lon
+
         listing.save()
 
         return HttpResponseRedirect(reverse('listings:index'))
