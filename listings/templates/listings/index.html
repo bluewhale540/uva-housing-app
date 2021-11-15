@@ -21,7 +21,7 @@
       <div class="card-body d-flex flex-column">
       <h4 class="card-title">{{ listing.name }}</h4>
       <p class="card-text">${{ listing.rent }}/month</p>
-        <p class="card-text">Rating: {{listing.rating|floatformat }}
+        <p class="card-text">Avg: {{listing.rating|floatformat }}
         {% for i in "s"|rjust:listing.rating %}
           <span class="fa fa-star checked"></span>
         {% endfor %}
