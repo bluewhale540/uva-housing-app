@@ -58,7 +58,6 @@ def review(request, listing_id):
            rating += review.rating 
 
         setattr(listing, "rating", rating/num)
-
         listing.save()
 
         return HttpResponseRedirect(reverse('listings:detail_rev', kwargs={'pk': listing_id}))
@@ -96,13 +95,13 @@ def listing_view(request):
         listing.desc = form.cleaned_data['desc']
         listing.link = form.cleaned_data['link']
 
-        info = {'key' : GEOCODING_API_KEY, 'address' : listing.address}
-        url = 'https://maps.googleapis.com/maps/api/geocode/json?'
+        geo_request = {'key': GEOCODING_API_KEY, 'address': listing.address}
+        geocode_url = 'https://maps.googleapis.com/maps/api/geocode/json?'
 
-        response = requests.get(url, params=info).json()
-        if response['status'] == 'OK':
-            lat = response['results'][0]['geometry']['location']['lat']
-            lon = response['results'][0]['geometry']['location']['lng']
+        geo_resp = requests.get(geocode_url, params=geo_request).json()
+        if geo_resp['status'] == 'OK':
+            lat = geo_resp['results'][0]['geometry']['location']['lat']
+            lon = geo_resp['results'][0]['geometry']['location']['lng']
 
         listing.lat = lat
         listing.lon = lon

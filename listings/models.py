@@ -29,8 +29,8 @@ class Listing(models.Model):
     desc = models.TextField(default='NO_DESCRIPTION')  # description of listing
     link = models.URLField(max_length=100, default='NO_LINK')
 
-    lat = models.DecimalField(default=0, decimal_places = 7, max_digits=10)
-    lon = models.DecimalField(default=0, decimal_places = 7, max_digits=10)
+    lat = models.DecimalField(default=0, decimal_places=7, max_digits=10)
+    lon = models.DecimalField(default=0, decimal_places=7, max_digits=10)
 
     # dateListed = models.DateTimeField()
 

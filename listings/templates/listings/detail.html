@@ -6,8 +6,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'home/stars.css' %}">
 
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css' rel='stylesheet'/>
+<link rel="stylesheet" type="text/css" href="{% static 'listings/maps.css' %}">
 
   <legend><h1>Learn more about {{ listing.name }}</h1></legend>
 
@@ -44,6 +45,65 @@
       </li>
     </ul>
     </div>
+  </div>
+
+  <h2>Location</h2>
+  <div class="mb-3 h-25">
+    <div id='map' style='width: 100%; height: 400px;'></div>
+      <script>
+      let lon = {{ listing.lon }};
+      let lat = {{ listing.lat }};
+      let name = "{{ listing.name }}"
+      let addr = "{{ listing.address }}"
+      </script>
+
+      <script>
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtY3Jvd24iLCJhIjoiY2t2dmRmcTliOHN5dTJxbXNrend2MWhmZCJ9.VMirb5Wp09qyL6VhqFWeIw';
+      let map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/satellite-streets-v10',
+        center: [lon, lat],
+        zoom: 16
+      });
+
+      map.scrollZoom.disable()
+
+      // more markers can be added here, i.e. library
+      const geojson = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [lon, lat]
+            },
+            properties: {
+              title: name,
+              description: addr
+            }
+          }
+        ]
+      };
+
+      // add markers to map
+      for (const feature of geojson.features) {
+        // create a HTML element for each feature
+        const el = document.createElement('div');
+        el.className = 'marker';
+
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker(el)
+        .setLngLat(feature.geometry.coordinates)
+        .setPopup(
+          new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+              `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+            )
+        )
+        .addTo(map);
+        }
+    </script>
   </div>
 
   <div class="row">
@@ -94,19 +154,6 @@
 {% else %}
     <p>No reviews are available.</p>
 {% endif %}
-
-<body>
-  <div id='map' style='width: 400px; height: 300px;'></div>
-  <script>
-  mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtY3Jvd24iLCJhIjoiY2t2dmRmcTliOHN5dTJxbXNrend2MWhmZCJ9.VMirb5Wp09qyL6VhqFWeIw';
-  var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/satellite-streets-v10',
-  center: [{{ listing.lon }}, {{ listing.lat }}],
-  zoom: 16
-  });
-  </script>
-  </body>
 
 {% if user.is_authenticated %}
   <a class="btn btn-primary" href="{% url 'listings:review' listing.id%}">Submit a review</a>
