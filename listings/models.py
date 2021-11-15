@@ -35,7 +35,7 @@ class Listing(models.Model):
     # dateListed = models.DateTimeField()
 
     def __str__(self):
-        return self.address
+        return self.name
 
     # possible methods: was_listed_recent
 
