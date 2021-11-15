@@ -67,6 +67,7 @@
       });
 
       map.scrollZoom.disable()
+      map.addControl(new mapboxgl.NavigationControl());
 
       // more markers can be added here, i.e. library
       const geojson = {
